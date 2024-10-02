@@ -12,5 +12,6 @@ class ProductBase(BaseModel):
 class ProductEdit(ProductBase):
     description:Optional[str] = None
 
-    
+class ProductView(ProductBase):
+    id: int
     
