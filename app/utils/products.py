@@ -60,3 +60,18 @@ async def edit_product(
     )
     await session.commit()
     return product
+
+
+async def delete_product(product_id:int , session:AsyncSession):
+    """ Удаление продукта из базы данных """
+    product = await session.execute(select(Product).where(Product.id == product_id))
+    product = product.scalars().first()
+    
+    if not product:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Product with ID `{product_id}` not found ",
+        )
+    await session.delete(product)
+    await session.commit()
+    return product

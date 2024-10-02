@@ -1,12 +1,16 @@
 from pydantic import BaseModel
 from typing import Optional
 
-class ProductEdit(BaseModel):
+    
+    
+class ProductBase(BaseModel):
     name:str
-    description:Optional[str] = None
+    description:str
     price:float
     quantity:int
-    
+
+class ProductEdit(ProductBase):
+    description:Optional[str] = None
 
     
     
